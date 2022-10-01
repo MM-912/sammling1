@@ -6,6 +6,10 @@ Denne appen skal tilate oss å eksportere / dele resurser. Med dette mener vi ak
 Vi skal spesielt ha fokus på prossess, kode kvalitet, tilgjengelighet 
 
 
+https://trello.com/b/GYJkhllm/demo 
+
+
+
 Planlegging:
 -> Walking skeleton / MVP 
 
