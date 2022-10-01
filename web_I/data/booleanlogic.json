@@ -1,0 +1,10 @@
+{
+    "title":"Logiske operatorer",
+    "description":"Logiske opperatorer lar oss kombinere  enheter til et sammensatt utrykk som enten er sant eller usant. Disse kortene er ment å la deg øve på forståelsen av dem i en Javascript context.",
+    "cards":[
+        {"front":"&&", "back":"&& er logisk and, det betyr at det som står på begesider av opperatoren må være sant, for at utrykket skal være sant."},
+        {"front":"||", "back":"|| er logisk eller, dette betyr at minimum en av sidene i utrykket må være sant."},
+        {"front":"(true) || (false) === true", "back":"Dette er sant fordi || krever bare at en av sidene skal være sann"}
+    ]
+
+}

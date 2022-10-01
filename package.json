@@ -1,0 +1,15 @@
+{
+  "name": "s1",
+  "version": "1.0.0",
+  "description": "Prosjekt: Flash Card.",
+  "main": "server.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.mjs"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}

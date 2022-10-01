@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlashCard</title>
+    <link href="./style/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div id="menuView">
+
+    </div>
+
+    <div id="practiceView">
+        <div id="cardView" role="checkbox" aria-checked="false" tabindex="0">
+            <div class="card">
+                <div class="front center">
+                    <p>FRONT</p>
+                </div>
+                <div class="back center">
+                    <p>BACK</p>
+                </div>
+            </div>
+        </div>
+
+        <button id="prev">Previous</button><button id="next">Next</button><button id="exit">Exit</button>
+    </div>
+
+
+
+    <script src="src/app.mjs" type="module"></script>
+</body>
+
+</html>
