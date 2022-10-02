@@ -1,0 +1,12 @@
+{
+    "no-nb":{
+        "forward":"Neste",
+        "backward":"Forgje",
+        "menu":"Meny"
+    },
+    "no-nn":{
+        "forward":"Neste",
+        "backward":"Forgje",
+        "menu":"Meny"
+    }
+}

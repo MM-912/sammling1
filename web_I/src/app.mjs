@@ -1,4 +1,6 @@
 import { tools as t } from "./util.mjs";
+import { i18n } from "./i18n.mjs";
+
 const practiceView = t.getElement("#practiceView");
 const menuView = t.getElement("#menuView");
 const cardView = t.getElement("#cardView");
@@ -14,6 +16,7 @@ let currentCollection = null;
 
 let currentCardIndex = 0;
 
+const dictionary = await i18n(navigator.language).init("data/i18n.json");
 
 cardView.onclick = (evt) => {
     cardView.classList.toggle("rotate");
@@ -66,8 +69,12 @@ function displayCard(card) {
 async function loadSources(sources) {
     const collections = [];
     for (const source of sources) {
-        const col = (await (await fetch("data/" + source)).json());
-        collections.push(col);
+        try {
+            const col = (await (await fetch("data/" + source)).json());
+            collections.push(col);     
+        } catch (error) {
+            console.error(error);
+        }
     }
     return collections;
 }
@@ -86,10 +93,18 @@ function displayMenu(){
     practiceView.classList.add("hidden");
 }
 
+function translateInterface(){
+    nextButton.innerText = dictionary.getkey("forward",nextButton.innerText);
+    previousButton.innerText = dictionary.getkey("backward",previousButton.innerText);
+    exitButton.innerText = dictionary.getkey("menu", exitButton.innerText);
+}
+
+
 await (async function init() {
 
-    practiceView.classList.add("hidden");
+    translateInterface();
 
+    practiceView.classList.add("hidden");
     collectionSrc = (await(await fetch("/collections")).json());
 
     //collections.unshift(...(await loadSources(collectionSrc));
