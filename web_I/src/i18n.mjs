@@ -23,8 +23,12 @@ const i18n = function (lang) {
         } 
         
 
-        return {getkey, getLanguages, hasLanguage}
+        return {getkey, getLanguages, hasLanguage, translateElement}
     }
+
+function translateElement(key,element){
+    element.innerText = getkey(key,element.innerText);
+}
 
     function hasLanguage(lang){
         return dictionary[lang] !== undefined;

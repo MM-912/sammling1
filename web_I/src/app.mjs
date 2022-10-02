@@ -1,5 +1,6 @@
 import { tools as t } from "./util.mjs";
 import { i18n } from "./i18n.mjs";
+import { IO } from "./io.mjs";
 
 const practiceView = t.getElement("#practiceView");
 const menuView = t.getElement("#menuView");
@@ -9,6 +10,7 @@ const backOfCard = t.getElement(".back");
 const previousButton = t.getElement("#prev");
 const nextButton = t.getElement("#next");
 const exitButton = t.getElement("#exit");
+const fileSelector = t.getElement("#fileSelector");
 
 let collectionSrc = [];
 let collections = [];
@@ -16,7 +18,7 @@ let currentCollection = null;
 
 let currentCardIndex = 0;
 
-const dictionary = await i18n(navigator.language).init("data/i18n.json");
+const dictionary = await i18n(navigator.language).init("i18n.json");
 
 cardView.onclick = (evt) => {
     cardView.classList.toggle("rotate");
@@ -71,7 +73,7 @@ async function loadSources(sources) {
     for (const source of sources) {
         try {
             const col = (await (await fetch("data/" + source)).json());
-            collections.push(col);     
+            collections.push(col);
         } catch (error) {
             console.error(error);
         }
@@ -88,27 +90,21 @@ function startPCardCollection(collection) {
     practiceView.classList.remove("hidden");
 }
 
-function displayMenu(){
+function displayMenu() {
     menuView.classList.remove("hidden");
     practiceView.classList.add("hidden");
 }
 
-function translateInterface(){
-    nextButton.innerText = dictionary.getkey("forward",nextButton.innerText);
-    previousButton.innerText = dictionary.getkey("backward",previousButton.innerText);
-    exitButton.innerText = dictionary.getkey("menu", exitButton.innerText);
+function translateInterface() {
+    dictionary.translateElement("forward", nextButton);
+    dictionary.translateElement("backward", previousButton);
+    dictionary.translateElement("menu", exitButton);
 }
 
-
-await (async function init() {
-
-    translateInterface();
-
-    practiceView.classList.add("hidden");
-    collectionSrc = (await(await fetch("/collections")).json());
-
+async function refreshMenu(){
     //collections.unshift(...(await loadSources(collectionSrc));
     collections = await loadSources(collectionSrc);
+    menuView.innerHTML = "";
 
     for (let col of collections) {
         const bt = document.createElement("Button");
@@ -118,6 +114,23 @@ await (async function init() {
         }
         menuView.appendChild(bt);
     }
+}
+
+await (async function init() {
+
+    translateInterface();
+    
+    fileSelector.addEventListener('change', async (e)=>{
+        const data =  await IO.loadFile(e.target.files[0]);
+        const parsedData = JSON.parse(IO.decodeContent(data));
+        await t.saveSource(parsedData, e.target.files[0].name);
+        refreshMenu();
+    });
+    
+    practiceView.classList.add("hidden");
+    collectionSrc = (await (await fetch("/collections")).json());
+
+    await refreshMenu();
 
     exitButton.onclick = function () {
         displayMenu();

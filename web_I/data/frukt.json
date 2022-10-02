@@ -1,12 +1,1 @@
-{
-    "title":"Frukt",
-    "description":"Vi smaker på frukt",
-    "cards":[
-        {"front":"Fe", "back":"Jern"},
-        {"front":"Au", "back":"Gull"},
-        {"front":"Ag", "back":"Sølv"},
-        {"front":"Hva er atom tallet for He", "back":"2"},
-        {"front":"img/bly.jpg", "back":"Pb dette er bly", "front-type":"img" ,"back-type":"text"},   
-        {"front-image":"img/bly.jpg", "front-alt":"Bilde av et svarte litt oljete mineral", "back":"Pb dette er bly" }  
-    ]
-}
+{"title":"Frukt","description":"Vi smaker på frukt","cards":[{"front":"Eple","back":"Smaker godt"},{"front":"Apelsin","back":"Smaker godt"},{"front":"Papaya","back":"Smaker drit"}]}
